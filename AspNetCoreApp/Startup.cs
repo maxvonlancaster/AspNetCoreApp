@@ -17,7 +17,7 @@ namespace AspNetCoreApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            // Also AddMvcCore - base without authorisation and stuff; AddControllersWithViews - con-s + views only;
+            // Also AddMvcCore - base without authorization and stuff; AddControllersWithViews - con-s + views only;
             // AddControllers - add only con-rs
         }
 

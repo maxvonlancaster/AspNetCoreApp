@@ -12,5 +12,10 @@ namespace AspNetCoreApp.Controllers
         {
             return View();
         }
+
+        public IActionResult Presentation() 
+        {
+            return View();
+        }
     }
 }
