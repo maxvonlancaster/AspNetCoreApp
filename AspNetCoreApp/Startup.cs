@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreApp.BLL.Interfaces;
+using AspNetCoreApp.BLL.Services;
 using AspNetCoreApp.DAL.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +33,8 @@ namespace AspNetCoreApp
             // AddControllers - add only con-rs
 
             services.AddDbContext<PresentationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<ISyncService, SyncService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
