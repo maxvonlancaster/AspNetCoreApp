@@ -36,6 +36,8 @@ namespace AspNetCoreApp
             services.AddDbContext<PresentationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ISyncService, SyncService>();
+            services.AddScoped<IUserService, UserService>();
+
 
             // configuration of cookies 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
