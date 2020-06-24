@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AspNetCoreApp.BLL.Interfaces;
 using AspNetCoreApp.BLL.Services;
 using AspNetCoreApp.DAL.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,14 @@ namespace AspNetCoreApp
             services.AddDbContext<PresentationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ISyncService, SyncService>();
+
+            // configuration of cookies 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login"); // path that the user will 
+                    // be redirected if accessed priv. resources
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +55,9 @@ namespace AspNetCoreApp
             }
 
             app.UseRouting();
+
+            app.UseAuthentication(); // authentication (who is the user)
+            app.UseAuthorization(); // authorisation (what rights the user has)
 
             app.UseEndpoints(endpoints =>
             {
