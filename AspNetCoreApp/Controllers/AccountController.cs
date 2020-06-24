@@ -33,6 +33,8 @@ namespace AspNetCoreApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model) 
         {
             if (ModelState.IsValid) 
@@ -49,6 +51,8 @@ namespace AspNetCoreApp.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model) 
         {
             if (ModelState.IsValid)

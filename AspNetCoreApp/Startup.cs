@@ -56,6 +56,7 @@ namespace AspNetCoreApp
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthentication(); // authentication (who is the user)
