@@ -15,7 +15,7 @@ namespace AspNetCoreApp.Controllers
             return View();
         }
 
-        public IActionResult Presentation() 
+        public IActionResult Streaming() 
         {
             return View();
         }

@@ -37,6 +37,9 @@ namespace AspNetCoreApp
 
             services.AddScoped<ISyncService, SyncService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IPresentationService, PresentationService>();
+            services.AddScoped<IQuestionService, QuestionService>();
 
 
             // configuration of cookies 
