@@ -10,9 +10,29 @@
     <title>Hello ASP.NET MVC Core</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width">
+    <script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="~/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <h2>Hello world!</h2>
+
+    <form asp-action="AddPresentation" asp-controller="Presentation" method="post" enctype="multipart/form-data">
+        <p>
+            <label>Upload new presentation</label>
+            <input name="File" type="file" class="form-control" />
+        </p>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </form>
+
     <a asp-action="LogOut" asp-controller="Account">Log out</a>
+
+
+    <script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/jquery/dist/jquery.min.js"></script>
+    <script src="~/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/jquery/dist/jquery.js"></script>
 </body>
 </html>
