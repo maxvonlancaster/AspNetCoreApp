@@ -44,9 +44,13 @@ namespace AspNetCoreApp.BLL.Services
             return presentation;
         }
 
-        public async Task<List<Presentation>> GetAll()
+        public async Task<List<Presentation>> GetList(int take, int skip, string userName)
         {
-            throw new NotImplementedException();
+            return await _context.Presentations.Where(p => p.User.UserName == userName)
+                .OrderBy(p => p.Name)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
 
         public async Task<Presentation> GetByTelegramId(string telegId)

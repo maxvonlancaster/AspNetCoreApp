@@ -12,7 +12,7 @@ namespace AspNetCoreApp.BLL.Interfaces
         Task Delete(int id);
         Task Edit(Presentation presentation);
         Task<Presentation> Get(int id);
-        Task<List<Presentation>> GetAll();
+        Task<List<Presentation>> GetList(int take, int skip, string userName);
         Task<Presentation> GetByTelegramId(string telegId);
         Task<List<Presentation>> GetByUser(int userId);
 
