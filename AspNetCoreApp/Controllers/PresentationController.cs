@@ -1,4 +1,5 @@
 ﻿using AspNetCoreApp.BLL.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,16 @@ namespace AspNetCoreApp.Controllers
         public PresentationController(IPresentationService presentationService)
         {
             _presentationService = presentationService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPresentation(IFormFile formFile) 
+        {
+            if (formFile != null) 
+            {
+            
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
