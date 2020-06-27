@@ -27,6 +27,11 @@
         </p>
     </form>
 
+    <div>
+        <ul id="themes" class="list-group">
+        </ul>
+    </div>
+
     <a asp-action="LogOut" asp-controller="Account">Log out</a>
 
 
@@ -34,5 +39,38 @@
     <script src="~/jquery/dist/jquery.min.js"></script>
     <script src="~/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log("scripts");
+            var result;
+
+            const get = fetch("/getPresentations", {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'Skip': 0,
+                    'Take': 10
+                })
+            })
+                .then(res => res.json())
+                .then((res) => { result = res; PopulateResult(res); });
+            console.log(result);
+
+            function PopulateResult(res) {
+                res.forEach(elem => {
+                    $("#themes").append('<li class="text-center list-group-item" id="' +
+                        elem.id +
+                        '"> <div class="panel-body"> <p>'
+                        + elem.id + '</p> <p>' + elem.name +
+                        '</p> <a href=/Home/Questions/' + elem.id +
+                        '> Add questions </a> </div> </li>');
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

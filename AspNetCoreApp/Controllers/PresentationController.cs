@@ -44,7 +44,7 @@ namespace AspNetCoreApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("getPresentations")]
         public async Task<IActionResult> GetPresentations([FromBody]PresentationListing presentationListing) 
         {

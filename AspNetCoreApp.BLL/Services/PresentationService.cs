@@ -46,11 +46,17 @@ namespace AspNetCoreApp.BLL.Services
 
         public async Task<List<Presentation>> GetList(int take, int skip, string userName)
         {
-            return await _context.Presentations.Where(p => p.User.UserName == userName)
+            var list = await _context.Presentations.Where(p => p.User.UserName == userName)
+                .Select(p => new Presentation()
+                {
+                    Id = p.Id,
+                    Name = p.Name
+                })
                 .OrderBy(p => p.Name)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
+            return list;
         }
 
         public async Task<Presentation> GetByTelegramId(string telegId)
