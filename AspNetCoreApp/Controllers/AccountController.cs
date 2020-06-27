@@ -99,7 +99,6 @@ namespace AspNetCoreApp.Controllers
 
         public async Task<IActionResult> LogOut() 
         {
-            var user = User;
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
         }

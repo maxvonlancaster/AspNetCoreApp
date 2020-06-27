@@ -43,5 +43,12 @@ namespace AspNetCoreApp.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        [Route("getPresentations")]
+        public async Task<IActionResult> GetPresentations([FromBody]PresentationListing presentationListing) 
+        {
+            return Json(await _presentationService.GetList(presentationListing.Take, presentationListing.Skip, User.Identity.Name));
+        }
     }
 }
