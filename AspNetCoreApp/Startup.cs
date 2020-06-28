@@ -36,13 +36,13 @@ namespace AspNetCoreApp
             // AddControllers - add only con-rs
 
             services.AddDbContext<PresentationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            Secrets.TelegramToken = Configuration.GetSection("token").Value;
 
             services.AddScoped<ISyncService, SyncService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPresentationService, PresentationService>();
             services.AddScoped<IQuestionService, QuestionService>();
-            Secrets.TelegramToken = Configuration.GetSection("token").Value;
 
             // configuration of cookies 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
