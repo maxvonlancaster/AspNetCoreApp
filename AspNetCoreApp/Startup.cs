@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AspNetCoreApp.BLL.Const;
 using AspNetCoreApp.BLL.Interfaces;
 using AspNetCoreApp.BLL.Services;
 using AspNetCoreApp.DAL.Entities;
@@ -40,7 +42,7 @@ namespace AspNetCoreApp
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPresentationService, PresentationService>();
             services.AddScoped<IQuestionService, QuestionService>();
-
+            Secrets.TelegramToken = Configuration.GetSection("token").Value;
 
             // configuration of cookies 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -64,6 +66,12 @@ namespace AspNetCoreApp
 
             app.UseAuthentication(); // authentication (who is the user)
             app.UseAuthorization(); // authorisation (what rights the user has)
+
+            //var appAssembly = Assembly.Load(new AssemblyName(env.ApplicationName));
+            //if (appAssembly != null)
+            //{ 
+            //    Configuration.Add
+            //}
 
             app.UseEndpoints(endpoints =>
             {
