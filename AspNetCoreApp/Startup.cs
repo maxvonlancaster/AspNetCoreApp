@@ -31,6 +31,8 @@ namespace AspNetCoreApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHostedService<SyncService>();
+
             services.AddMvc();
             // Also AddMvcCore - base without authorization and stuff; AddControllersWithViews - con-s + views only;
             // AddControllers - add only con-rs
@@ -38,11 +40,12 @@ namespace AspNetCoreApp
             services.AddDbContext<PresentationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             Secrets.TelegramToken = Configuration.GetSection("token").Value;
 
-            services.AddScoped<ISyncService, SyncService>();
+            //services.AddScoped<ISyncService, SyncService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPresentationService, PresentationService>();
             services.AddScoped<IQuestionService, QuestionService>();
+            //services.AddSingleton<IHostedService, SyncService>();
 
             // configuration of cookies 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

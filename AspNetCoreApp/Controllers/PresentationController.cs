@@ -26,7 +26,7 @@ namespace AspNetCoreApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPresentation(FileUpload formFile) 
         {
-            if (formFile != null) 
+            if (formFile != null && formFile?.File != null) 
             {
                 var user = await _userService.GetByUserName(User.Identity.Name);
                 byte[] fileData = null;

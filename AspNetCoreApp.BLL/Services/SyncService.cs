@@ -1,6 +1,8 @@
 ﻿using AspNetCoreApp.BLL.Const;
 using AspNetCoreApp.BLL.Interfaces;
 using AspNetCoreApp.DAL.Entities;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,37 +13,49 @@ using Telegram.Bot.Args;
 
 namespace AspNetCoreApp.BLL.Services
 {
-    public class SyncService: ISyncService
+    public class SyncService: IHostedService, IDisposable
     {
-        private readonly IUserService _userService;
-        private readonly IPresentationService _presentationService;
+        IServiceScopeFactory _serviceScopeFactory;
         private readonly TelegramBotClient _client;
 
-        public SyncService(IUserService userService, IPresentationService presentationService)
+        public SyncService(IServiceScopeFactory serviceScopeFactory)
         {
-            _userService = userService;
-            _presentationService = presentationService;
+            _serviceScopeFactory = serviceScopeFactory;
             _client = new TelegramBotClient(Secrets.TelegramToken);
-            StartReceiving();
         }
 
-        public void StartReceiving() 
+        public void Dispose()
         {
-            var cts = new CancellationTokenSource();
-            var stoppingToken = cts.Token;
+        }
 
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
             _client.OnMessage += OnFirstMessage;
             _client.OnCallbackQuery += OnCallBack;
 
-            Task.Run(() =>
+            Thread th = new Thread(new ThreadStart(() =>
             {
-                _client.StartReceiving(cancellationToken: stoppingToken);
+                _client.StartReceiving(cancellationToken: cancellationToken);
                 Console.WriteLine("Started Receiving");
-                while (!stoppingToken.IsCancellationRequested)
+                while (!cancellationToken.IsCancellationRequested)
                 {
                     _client.GetUpdatesAsync();
                 }
-            });
+            }));
+
+            th.Start();
+            return Task.CompletedTask;
+        }
+
+        //public void StartReceiving() 
+        //{
+        //    var cts = new CancellationTokenSource();
+        //    var stoppingToken = cts.Token;
+        //}
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
         }
 
         private void OnCallBack(object sender, CallbackQueryEventArgs e)
@@ -51,8 +65,11 @@ namespace AspNetCoreApp.BLL.Services
 
         private async void OnFirstMessage(object sender, MessageEventArgs e)
         {
-            User user = await _userService.GetByTelegramId(e.Message.From.Username);
-            throw new NotImplementedException();
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                IUserService userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+                User user = await userService.GetByTelegramId(e.Message.From.Username);
+            }
         }
     }
 }
