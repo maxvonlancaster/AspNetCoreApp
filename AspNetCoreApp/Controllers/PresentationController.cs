@@ -26,7 +26,6 @@ namespace AspNetCoreApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPresentation(FileUpload formFile) 
         {
-            string s = Secrets.TelegramToken;
             if (formFile != null) 
             {
                 var user = await _userService.GetByUserName(User.Identity.Name);
