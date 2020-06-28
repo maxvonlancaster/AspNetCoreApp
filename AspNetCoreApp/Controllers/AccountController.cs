@@ -3,6 +3,7 @@ using AspNetCoreApp.DAL.Entities;
 using AspNetCoreApp.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,19 @@ namespace AspNetCoreApp.Controllers
         public IActionResult Register() 
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            User user = await _userService.GetByUserName(User.Identity.Name);
+            EditModel model = new EditModel() 
+            {
+               Password = user.Password,
+               Email = user.Email,
+               TelegramId = user.TelegramId
+            };
+            return View((object)model);
         }
 
         [HttpPost]
@@ -103,5 +117,22 @@ namespace AspNetCoreApp.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Edit(EditModel model) 
+        {
+            if (ModelState.IsValid) 
+            {
+                User user = await _userService.GetByUserName(User.Identity.Name);
+                user.Email = model.Email;
+                user.Password = model.Password;
+                user.TelegramId = model.TelegramId;
+                await _userService.Edit(user);
+                return RedirectToAction("Index", "Home");
+            }
+            ModelState.AddModelError("", "Incorrect credentials");
+            return View(model);
+        }
     }
 }
