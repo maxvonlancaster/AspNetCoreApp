@@ -47,12 +47,6 @@ namespace AspNetCoreApp.BLL.Services
             return Task.CompletedTask;
         }
 
-        //public void StartReceiving() 
-        //{
-        //    var cts = new CancellationTokenSource();
-        //    var stoppingToken = cts.Token;
-        //}
-
         public Task StopAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
