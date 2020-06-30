@@ -62,7 +62,29 @@ namespace AspNetCoreApp.BLL.Services
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 IUserService userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+                IPresentationService presentationService = scope.ServiceProvider.GetRequiredService<IPresentationService>();
                 User user = await userService.GetByTelegramId(e.Message.From.Username);
+
+                string responseText;
+                if (user != null)
+                {
+                    var presentations = await presentationService.GetByUser(user.Id);
+
+                    
+                    if (presentations != null)
+                    {
+                        responseText = "Hello, " + user.UserName + ", here are your presentations. Please select one to stream.";
+                    }
+                    else
+                    {
+                        responseText = "Hello, " + user.UserName + ", you have no presentations currently in the system. Do you want to add one?.";
+                    }
+                }
+                else 
+                {
+                    responseText = "It looks, like you are not registered in the system.";
+                }
+                
             }
         }
     }
