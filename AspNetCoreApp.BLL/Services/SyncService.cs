@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Args;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace AspNetCoreApp.BLL.Services
 {
@@ -74,6 +75,16 @@ namespace AspNetCoreApp.BLL.Services
                     if (presentations != null)
                     {
                         responseText = "Hello, " + user.UserName + ", here are your presentations. Please select one to stream.";
+                        List<InlineKeyboardButton> buttons = new List<InlineKeyboardButton>();
+                        foreach (var presentation in presentations)
+                        {
+                            InlineKeyboardButton button = new InlineKeyboardButton();
+                            button.CallbackData = $"{user.Id}:{presentation}:{0}";
+                            button.Text = presentation.Name;
+                        }
+
+                        InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
+                        await _client.SendTextMessageAsync(user.Id, responseText, replyMarkup: markup);
                     }
                     else
                     {
