@@ -55,7 +55,21 @@ namespace AspNetCoreApp.BLL.Services
 
         private void OnCallBack(object sender, CallbackQueryEventArgs e)
         {
-            throw new NotImplementedException();
+            string[] data = e.CallbackQuery.Data.Split(':');
+            int callBackId; 
+            bool converted = int.TryParse(data?[2], out callBackId);
+            if (converted && callBackId == 0) 
+            {
+            
+            }
+            if (converted && callBackId > 0)
+            {
+
+            }
+            else 
+            {
+            
+            }
         }
 
         private async void OnFirstMessage(object sender, MessageEventArgs e)
