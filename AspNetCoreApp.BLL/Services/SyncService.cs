@@ -84,12 +84,12 @@ namespace AspNetCoreApp.BLL.Services
                 if (user != null)
                 {
                     var presentations = await presentationService.GetByUser(user.Id);
+                    List<InlineKeyboardButton> buttons = new List<InlineKeyboardButton>();
 
-                    
                     if (presentations != null)
                     {
                         responseText = "Hello, " + user.UserName + ", here are your presentations. Please select one to stream.";
-                        List<InlineKeyboardButton> buttons = new List<InlineKeyboardButton>();
+                        
                         foreach (var presentation in presentations)
                         {
                             InlineKeyboardButton button = new InlineKeyboardButton();
@@ -102,7 +102,8 @@ namespace AspNetCoreApp.BLL.Services
                     }
                     else
                     {
-                        responseText = "Hello, " + user.UserName + ", you have no presentations currently in the system. Do you want to add one?.";
+                        responseText = "Hello, " + user.UserName + ", you have no presentations currently in the system. Do you want to add one?. Send one!";
+
                     }
                 }
                 else 
