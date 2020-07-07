@@ -24,3 +24,13 @@ namespace AspNetCoreApp
                 });
     }
 }
+
+// Todo:
+// 1. Add better web view (bootstrap, css)
+// 2. Streaming in signalr add
+// 3. Add parsing of presentations
+// 4. Add messaging of photos to subscribers
+// 5. 
+// 6. 
+// 
+// 
