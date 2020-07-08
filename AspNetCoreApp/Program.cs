@@ -30,7 +30,7 @@ namespace AspNetCoreApp
 // 2. Streaming in signalr add
 // 3. Add parsing of presentations
 // 4. Add messaging of photos to subscribers
-// 5. 
+// 5. Add functionality of crud for questions to presentation
 // 6. 
 // 
 // 
