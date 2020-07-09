@@ -64,9 +64,9 @@ namespace AspNetCoreApp.BLL.Services
             throw new NotImplementedException();
         }
 
-        public bool QuestionExists(string questionId)
+        public bool QuestionExists(int questionId)
         {
-            throw new NotImplementedException();
+            return _context.Questions.Any(q => q.Id == questionId);
         }
     }
 }

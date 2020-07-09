@@ -16,6 +16,6 @@ namespace AspNetCoreApp.BLL.Interfaces
         Task<Question> GetByTelegramId(string telegId);
         Task<Question> GetByUserName(string userName);
         Task<List<Question>> GetByPresentation(int presentationId);
-        bool QuestionExists(string questionId);
+        bool QuestionExists(int questionId);
     }
 }
