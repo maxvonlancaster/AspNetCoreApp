@@ -37,11 +37,11 @@ namespace AspNetCoreApp.BLL.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> Get(int id)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
-            return user;
-        }
+        //public async Task<User> Get(int id)
+        //{
+        //    var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+        //    return user;
+        //}
 
         public async Task<List<User>> GetAll()
         {

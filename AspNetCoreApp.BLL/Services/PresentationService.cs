@@ -64,9 +64,9 @@ namespace AspNetCoreApp.BLL.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<Presentation>> GetByUser(int userId)
+        public async Task<List<Presentation>> GetByUser(string userName)
         {
-            var presentations = await _context.Presentations.Where(p => p.User.Id == userId).ToListAsync();
+            var presentations = await _context.Presentations.Where(p => p.User.UserName == userName).ToListAsync();
             return presentations;
         }
 

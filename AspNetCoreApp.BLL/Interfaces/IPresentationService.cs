@@ -14,7 +14,7 @@ namespace AspNetCoreApp.BLL.Interfaces
         Task<Presentation> Get(int id);
         Task<List<Presentation>> GetList(int take, int skip, string userName);
         Task<Presentation> GetByTelegramId(string telegId);
-        Task<List<Presentation>> GetByUser(int userId);
+        Task<List<Presentation>> GetByUser(string userName);
 
         bool PresentationExists(string postId);
     }

@@ -83,7 +83,7 @@ namespace AspNetCoreApp.BLL.Services
                 string responseText;
                 if (user != null)
                 {
-                    var presentations = await presentationService.GetByUser(user.Id);
+                    var presentations = await presentationService.GetByUser(user.UserName);
                     List<InlineKeyboardButton> buttons = new List<InlineKeyboardButton>();
 
                     if (presentations != null)
@@ -93,12 +93,12 @@ namespace AspNetCoreApp.BLL.Services
                         foreach (var presentation in presentations)
                         {
                             InlineKeyboardButton button = new InlineKeyboardButton();
-                            button.CallbackData = $"{user.Id}:{presentation}:{0}";
+                            button.CallbackData = $"{user.UserName}:{presentation}:{0}";
                             button.Text = presentation.Name;
                         }
 
                         InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
-                        await _client.SendTextMessageAsync(user.Id, responseText, replyMarkup: markup);
+                        await _client.SendTextMessageAsync(user.UserName, responseText, replyMarkup: markup);
                     }
                     else
                     {

@@ -49,7 +49,8 @@ namespace AspNetCoreApp.Controllers
         [Route("getPresentations")]
         public async Task<IActionResult> GetPresentations([FromBody]PresentationListing presentationListing) 
         {
-            return Json(await _presentationService.GetList(presentationListing.Take, presentationListing.Skip, User.Identity.Name));
+            var presentations = await _presentationService.GetList(presentationListing.Take, presentationListing.Skip, User.Identity.Name);
+            return Json(presentations);
         }
     }
 }

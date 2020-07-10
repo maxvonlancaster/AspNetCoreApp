@@ -8,10 +8,11 @@ namespace AspNetCoreApp.DAL.Entities
 {
     public class User
     {
+        
+        public string Email { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string TelegramId { get; set; }

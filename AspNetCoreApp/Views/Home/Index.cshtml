@@ -45,8 +45,10 @@
     <script src="~/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
+        console.log("script started");
+
         $(document).ready(function () {
-            console.log("scripts");
+            console.log("load started");
             var result;
 
             const get = fetch("/getPresentations", {

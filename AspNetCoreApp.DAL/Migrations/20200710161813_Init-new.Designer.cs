@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreApp.DAL.Migrations
 {
     [DbContext(typeof(PresentationContext))]
-    [Migration("20200623110350_Init")]
-    partial class Init
+    [Migration("20200710161813_Init-new")]
+    partial class Initnew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,12 +52,12 @@ namespace AspNetCoreApp.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserName");
 
                     b.ToTable("Presentations");
                 });
@@ -93,10 +93,9 @@ namespace AspNetCoreApp.DAL.Migrations
 
             modelBuilder.Entity("AspNetCoreApp.DAL.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("UserName")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -107,10 +106,7 @@ namespace AspNetCoreApp.DAL.Migrations
                     b.Property<string>("TelegramId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserName");
 
                     b.ToTable("Users");
                 });
@@ -119,7 +115,7 @@ namespace AspNetCoreApp.DAL.Migrations
                 {
                     b.HasOne("AspNetCoreApp.DAL.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserName");
                 });
 
             modelBuilder.Entity("AspNetCoreApp.DAL.Entities.Question", b =>
