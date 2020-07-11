@@ -45,10 +45,8 @@
     <script src="~/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
-        console.log("script started");
 
         $(document).ready(function () {
-            console.log("load started");
             var result;
 
             const get = fetch("/getPresentations", {
@@ -68,6 +66,7 @@
 
             function PopulateResult(res) {
                 res.forEach(elem => {
+                    console.log(elem);
                     $("#themes").append('<li class="text-center list-group-item" id="' +
                         elem.id +
                         '"> <div class="panel-body"> <p>'

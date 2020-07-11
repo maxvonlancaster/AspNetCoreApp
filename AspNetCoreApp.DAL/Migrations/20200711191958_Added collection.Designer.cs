@@ -4,14 +4,16 @@ using AspNetCoreApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreApp.DAL.Migrations
 {
     [DbContext(typeof(PresentationContext))]
-    partial class PresentationContextModelSnapshot : ModelSnapshot
+    [Migration("20200711191958_Added collection")]
+    partial class Addedcollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -74,5 +74,11 @@ namespace AspNetCoreApp.BLL.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Presentation> GetWithQuestions(int id)
+        {
+            var presentation = await _context.Presentations.Include(p => p.Questions).FirstOrDefaultAsync(p => p.Id == id);
+            return presentation;
+        }
     }
 }

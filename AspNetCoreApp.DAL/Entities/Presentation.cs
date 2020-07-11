@@ -14,5 +14,7 @@ namespace AspNetCoreApp.DAL.Entities
         public string Name { get; set; }
         public User User { get; set; }
         public byte[] File { get; set; }
+
+        public ICollection<Question> Questions { get; set; }
     }
 }
