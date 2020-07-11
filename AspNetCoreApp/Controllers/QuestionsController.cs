@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace AspNetCoreApp.Controllers
@@ -20,10 +21,12 @@ namespace AspNetCoreApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int presentationId) 
+        public async Task<IActionResult> Index() 
         {
-            var url = Url.ActionContext.RouteData.Values["id"];
-            var presentation = await _presentationService.GetWithQuestions(presentationId);
+            var idString = (string)Url.ActionContext.RouteData.Values["id"];
+            int id;
+            Int32.TryParse(idString, out id);
+            var presentation = await _presentationService.GetWithQuestions(id);
             return View();
         }
 
