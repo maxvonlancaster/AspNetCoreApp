@@ -31,6 +31,6 @@ namespace AspNetCoreApp
 // 3. Add parsing of presentations 
 // 4. Add messaging of photos to subscribers 
 // 5. Add functionality of crud for questions to presentation 
-// 6. List of presentations takes too long to load, fix it! +
+// 6. List of presentations takes too long to load, fix it!
 // 7. 
 // 
