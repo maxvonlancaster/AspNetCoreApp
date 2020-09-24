@@ -74,7 +74,7 @@ namespace AspNetCoreApp
             //if (appAssembly != null)
             //{ 
             //    Configuration.Add
-            //}
+            
 
             app.UseEndpoints(endpoints =>
             {
