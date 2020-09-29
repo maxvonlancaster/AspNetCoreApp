@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApp", "AspNetCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApp.BLL", "AspNetCoreApp.BLL\AspNetCoreApp.BLL.csproj", "{E13E88CA-903D-48D5-B3FF-2345C37D6930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreApp.DAL", "AspNetCoreApp.DAL\AspNetCoreApp.DAL.csproj", "{E4DF49AE-AB72-41A3-A2BA-3153C928500F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApp.DAL", "AspNetCoreApp.DAL\AspNetCoreApp.DAL.csproj", "{E4DF49AE-AB72-41A3-A2BA-3153C928500F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppPlayground", "ConsoleAppPlayground\ConsoleAppPlayground.csproj", "{1D193A6C-C375-423C-B9FB-2D9EAB52B653}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{E4DF49AE-AB72-41A3-A2BA-3153C928500F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4DF49AE-AB72-41A3-A2BA-3153C928500F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4DF49AE-AB72-41A3-A2BA-3153C928500F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D193A6C-C375-423C-B9FB-2D9EAB52B653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D193A6C-C375-423C-B9FB-2D9EAB52B653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D193A6C-C375-423C-B9FB-2D9EAB52B653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D193A6C-C375-423C-B9FB-2D9EAB52B653}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
