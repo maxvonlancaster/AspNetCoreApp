@@ -20,6 +20,7 @@ namespace ConsoleAppPlayground.Interview
     {
         public abstract void Sample();
         public void SampleTwo() { }
+        public virtual void SampleThree() { } // no need to implement
     }
 
     public class FirstClass : AbsClass
@@ -104,7 +105,7 @@ namespace ConsoleAppPlayground.Interview
     public class Interview
     {
 
-        // When passing by value (without ref) method does not get a variable, but its copy
+        // 7. When passing by value (without ref) method does not get a variable, but its copy
         // when ref -> method gets address of the variable in memory
         public void PassByReferenceAndValue()
         {
@@ -119,6 +120,8 @@ namespace ConsoleAppPlayground.Interview
             int z;
             Sum(10, 10, out z);
             Console.WriteLine("Sum={0}", z); // z=20
+            // ref tells the compiler that the object is initialized before entering the function, while 
+            // out tells the compiler that the object will be initialized inside the function.
         }
 
         // value passed
