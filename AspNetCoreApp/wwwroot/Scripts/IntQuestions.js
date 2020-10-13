@@ -34,7 +34,17 @@
 
     //How hoisting works
     Hoisting() {
+        // In JavaScript, a variable can be declared after it has been used. In other words; a variable can be 
+        // used before it has been declared.
 
+        // Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope
+        x = 5; // Assign 5 to x
+        elem = document.getElementById("demo"); // Find an element
+        elem.innerHTML = x;                     // Display x in the element
+        var x; // Declare x
+
+        // Variables defined with let and const are hoisted to the top of the block, but not initialized.
+        // Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
     }
 
     //Benefit of Immediately Invoked Function Expression
