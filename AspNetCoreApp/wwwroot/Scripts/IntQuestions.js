@@ -49,17 +49,39 @@
 
     //Benefit of Immediately Invoked Function Expression
     ImmeiatelyInvokedFunct() {
-
+        // Sometimes you need to define and call function at the same time and only once so in this case anonymous 
+        // function helps you.In such situations giving functions a name and then calling them is just excess.
     }
 
     //Array method.reduce() how works
     ArrayReduce() {
+        // The reduce() method reduces the array to a single value.
+        // The reduce() method executes a provided function for each value of the array(from left - to - right).
+        // The return value of the function is stored in an accumulator(result / total).
+        // Note: reduce() does not execute the function for array elements without values.
+        // Note: this method does not change the original array.
 
+        var numbers = [175, 50, 25];
+        console.log(numbers.reduce(myFunc)); // 100
+        function myFunc(total, num) {
+            return total - num;
+        }
     }
 
     //Arrow function vs function
     ArrowFunVSFunc() {
+        let add = (x, y) => x + y;
+        // Arrow functions do not have an arguments binding. However, they have access to the arguments object of the 
+        // closest non - arrow parent function.
 
+        // Unlike regular functions, arrow functions do not have their own this. The value of this inside an arrow 
+        // function remains the same throughout the lifecycle of the function and is always bound to the value of this 
+        // in the closest non - arrow parent function.
+
+        // arrow functions can never be used as constructor functions. Hence, they can never be invoked with the new keyword.
+
+        // Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
+        (x, x) => { }  // SyntaxError: duplicate argument names not allowed in this context
     }
 
     //.call(), .apply(), .bind() what is it
