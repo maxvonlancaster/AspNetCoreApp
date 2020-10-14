@@ -86,7 +86,43 @@
 
     //.call(), .apply(), .bind() what is it
     CallApplyBind() {
+        // We use call, bind and apply methods to set the this keyword independent of how the function is called. 
+        // This is especially useful for the callbacks(as in the above example).
+        const person = {
+            firstName: 'John',
+            lastName: 'Doe',
+            printName: function () {
+                console.log(this.firstName + ' ' + this.lastName);
+            }
+        };
+        person.printName(); // John Doe
+        const printFullName = person.printName;
+        printFullName(); // undefined undefined
 
+        // The bind method creates a new function and sets the this keyword to the specified object.
+        const john = {
+            name: 'John',
+            age: 24,
+        };
+        const jane = {
+            name: 'Jane',
+            age: 22,
+        };
+        function greeting() {
+            console.log(`Hi, I am ${this.name} and I am ${this.age} years old`);
+        }
+        const greetingJohn = greeting.bind(john); 
+        greetingJohn(); // Hi, I am John and I am 24 years old
+        const greetingJane = greeting.bind(jane);
+        greetingJane(); // Hi, I am Jane and I am 22 years old
+        // Bind() can also accept arguments: const greetingJohn = greeting.bind(john, arg1, arg2); 
+
+        // The call method sets the this inside the function and immediately executes that function.
+        greeting.call(john); // Hi, I am John and I am 24 years old
+        // Call () can also accept arguments
+
+        // The apply() method is similar to call(). The difference is that the apply() method accepts an 
+        // array of arguments instead of comma separated values.
     }
 
     //Event bubbling vs Event capturing
